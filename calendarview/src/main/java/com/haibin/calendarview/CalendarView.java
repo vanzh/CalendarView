@@ -235,6 +235,16 @@ public class CalendarView extends FrameLayout {
     }
 
     /**
+     * 如果不设置，点击月份会自动切换到月份模式，且日期是选择的月份
+     * @param listener
+     */
+    public void setOnMonthSelectedListener(YearRecyclerView.OnMonthSelectedListener listener){
+        if(mYearViewPager !=null){
+            mYearViewPager.setOnMonthSelectedListener(listener);
+        }
+    }
+
+    /**
      * 设置日期范围
      *
      * @param minYear      最小年份

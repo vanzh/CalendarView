@@ -135,7 +135,7 @@ public final class YearRecyclerView extends RecyclerView {
         mAdapter.setYearViewSize(width / 3, height / 4);
     }
 
-    interface OnMonthSelectedListener {
+    public interface OnMonthSelectedListener {
         void onMonthSelected(int year, int month);
     }
 }
