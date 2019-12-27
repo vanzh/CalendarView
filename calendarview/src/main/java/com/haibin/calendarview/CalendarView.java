@@ -1018,6 +1018,17 @@ public class CalendarView extends FrameLayout {
      * @param endCalendar   endCalendar
      */
     public final void setSelectCalendarRange(Calendar startCalendar, Calendar endCalendar) {
+        setSelectCalendarRange(startCalendar, endCalendar, 0);
+    }
+
+    /**
+     * 设置选择日期范围
+     *
+     * @param startCalendar startCalendar
+     * @param endCalendar   endCalendar
+     * @param scrollDic 设置时期后如果会有滑动方向
+     */
+    public final void setSelectCalendarRange(Calendar startCalendar, Calendar endCalendar, int scrollDic) {
         if (mDelegate.getSelectMode() != CalendarViewDelegate.SELECT_MODE_RANGE) {
             return;
         }
@@ -1064,7 +1075,11 @@ public class CalendarView extends FrameLayout {
             if (mDelegate.mCalendarRangeSelectListener != null) {
                 mDelegate.mCalendarRangeSelectListener.onCalendarRangeSelect(startCalendar, false);
             }
-            scrollToCalendar(startCalendar.getYear(), startCalendar.getMonth(), startCalendar.getDay());
+            if(scrollDic ==1) {
+                scrollToCalendar(endCalendar.getYear(), endCalendar.getMonth(), endCalendar.getDay());
+            }else{
+                scrollToCalendar(startCalendar.getYear(), startCalendar.getMonth(), startCalendar.getDay());
+            }
             return;
         }
 
@@ -1074,7 +1089,11 @@ public class CalendarView extends FrameLayout {
             mDelegate.mCalendarRangeSelectListener.onCalendarRangeSelect(startCalendar, false);
             mDelegate.mCalendarRangeSelectListener.onCalendarRangeSelect(endCalendar, true);
         }
-        scrollToCalendar(startCalendar.getYear(), startCalendar.getMonth(), startCalendar.getDay());
+        if(scrollDic == 1){
+            scrollToCalendar(endCalendar.getYear(), endCalendar.getMonth(), endCalendar.getDay());
+        }else{
+            scrollToCalendar(startCalendar.getYear(), startCalendar.getMonth(), startCalendar.getDay());
+        }
     }
 
     /**
